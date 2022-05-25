@@ -1,0 +1,242 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-soft-red: hsl(10, 79%, 65%);
+  --clr-cyan: hsl(186, 34%, 60%);
+  --clr-dark-brown: hsl(25, 47%, 15%);
+  --clr-medium-brown: hsl(28, 10%, 53%);
+  --clr-cream: hsl(27, 66%, 92%);
+  --clr-very-pale-orange: hsl(33, 100%, 98%);
+
+  --fs-body: 'DM Sans', sans-serif;
+}
+
+@mixin md {
+  @media screen and (min-width: 33.75rem) {
+    @content;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--fs-body);
+  font-weight: 400;
+  font-size: 1.125rem;
+  background-color: var(--clr-cream);
+  display: grid;
+}
+
+a {
+  color: var(--clr-soft-red);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+// UTILITIES
+.separator {
+  background-color: var(--clr-cream);
+  height: 2px;
+  border-radius: 1px;
+  margin-block: 1.5rem;
+
+  @include md {
+    margin-block: 2rem;
+  }
+}
+
+// SPECIFIC STYLES
+.app {
+  width: min(33.75rem, 100% - 2rem);
+  margin: auto;
+
+  &__header {
+    background-color: var(--clr-soft-red);
+    color: white;
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include md {
+      margin-bottom: 1.5rem;
+      padding: 2rem;
+    }
+
+    &-title {
+      font-size: calc(15rem / 16);
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+
+      @include md {
+        font-size: inherit;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &-balance {
+      font-size: 1.5rem;
+      font-weight: 700;
+
+      @include md {
+        font-size: 2rem;
+      }
+    }
+
+    img {
+      width: 3.75rem;
+
+      @include md {
+        width: 4.5rem;
+      }
+    }
+  }
+
+  &__content {
+    background-color: var(--clr-very-pale-orange);
+    padding: 1.5rem 1.25rem;
+    border-radius: 0.625rem;
+
+    @include md {
+      padding: 2.5rem;
+      padding-top: 2rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    color: var(--clr-dark-brown);
+    margin-bottom: 3.25rem;
+
+    @include md {
+      font-size: 2rem;
+      margin-bottom: 4.125rem;
+    }
+  }
+
+  &__graph {
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
+
+    @include md {
+      gap: 1rem;
+    }
+
+    > li {
+      flex: 1 1 0px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--clr-medium-brown);
+      position: relative;
+
+      @include md {
+        font-size: calc(15rem / 16);
+      }
+    }
+
+    .bar-info {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, calc(-100% - 0.5rem));
+      display: inline-block;
+      background-color: var(--clr-dark-brown);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      color: white;
+      font-size: 0.75rem;
+      visibility: hidden;
+      font-weight: 700;
+      z-index: 2;
+
+      @include md {
+        font-size: inherit;
+      }
+    }
+
+    .bar {
+      background-color: var(--clr-soft-red);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      margin-inline: auto;
+
+      &.today {
+        background-color: var(--clr-cyan);
+      }
+
+      &:hover {
+        opacity: 0.6;
+
+        + .bar-info {
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  &__total {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    color: var(--clr-dark-brown);
+
+    h2 {
+      font-size: calc(15rem / 16);
+      font-weight: 400;
+      color: var(--clr-medium-brown);
+      margin-bottom: 0.25rem;
+
+      @include md {
+        font-size: inherit;
+      }
+    }
+
+    &-value {
+      font-size: 1.875rem;
+      font-weight: 700;
+
+      @include md {
+        font-size: 3rem;
+      }
+    }
+
+    .right {
+      text-align: right;
+      font-size: calc(15rem / 16);
+      font-weight: 700;
+
+      @include md {
+        font-size: inherit;
+      }
+
+      p {
+        color: var(--clr-medium-brown);
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.attribution {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: center;
+}
