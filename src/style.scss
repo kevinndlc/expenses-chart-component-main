@@ -75,6 +75,7 @@ ul {
     @include md {
       margin-bottom: 1.5rem;
       padding: 2rem;
+      border-radius: 1.25rem;
     }
 
     &-title {
@@ -114,6 +115,7 @@ ul {
     @include md {
       padding: 2.5rem;
       padding-top: 2rem;
+      border-radius: 1.25rem;
     }
   }
 
